@@ -148,6 +148,10 @@ type argumentWrapper struct {
 	conv   conv
 }
 
+func (arg *argumentWrapper) GoName() string {
+	return strings.Title(arg.Name)
+}
+
 func (arg *argumentWrapper) AsParameter() string {
 	return fmt.Sprintf("%s %s", arg.Name, arg.conv.ExtType)
 }
@@ -184,7 +188,7 @@ func (arg *argumentWrapper) Marshal() string {
 }
 
 func (arg *argumentWrapper) Unmarshal(objVar string) string {
-	return fmt.Sprintf("soap.Unmarshal%s(%s.%s)", arg.conv.FuncSuffix, objVar, arg.Name)
+	return fmt.Sprintf("soap.Unmarshal%s(%s.%s)", arg.conv.FuncSuffix, objVar, arg.GoName())
 }
 
 type argumentWrapperList []*argumentWrapper

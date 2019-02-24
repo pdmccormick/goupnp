@@ -148,6 +148,6 @@ func (client *{{$srvIdent}}) {{.Name}}({{range $winargs -}}
 {{end}}
 
 {{define "argstruct"}}struct {{"{"}}
-{{range .}}{{.Name}} string
+{{range .}}{{.GoName}} string ` + "`" + `xml:"{{.Name}}"` + "`" + `
 {{end}}{{"}"}}{{end}}
 `))
